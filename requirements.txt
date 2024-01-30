@@ -1,0 +1,11 @@
+pandas
+opencv-python
+pillow
+torch
+torchvision
+scikit-image
+pycryptodome
+tritonclient[all]
+onnx
+onnxruntime
+tensorrt

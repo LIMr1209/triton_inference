@@ -1,0 +1,9 @@
+pandas
+opencv-python
+pillow
+torch
+torchvision
+scikit-image
+pycryptodome
+cython
+tritonclient[all]
