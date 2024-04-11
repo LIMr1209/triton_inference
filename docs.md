@@ -64,4 +64,13 @@ python3 build.py -m chatglm2_6b_32k --model_dir /root/chatglm2-6b-32k --output_d
 - cuda-python 版本 nvcc 匹配 文档[CUDA-Python](!https://nvidia.github.io/cuda-python/install.html)
 - [trtexec命令](!https://developer.nvidia.com/zh-cn/blog/tensorrt-trtexec-cn/)
 - [TensorRT容器](!https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorrt/tags)
-- 
+- NVIDIA TensorRT™ 是用于高性能深度学习推理的 SDK。此 SDK 包含深度学习推理优化器和运行时环境，可为深度学习推理应用提供低延迟和高吞吐量。EA 指 Early Access，即抢先体验版本，一般是在正式发布之前供广大用户提前体验。GA 指 General Availability，一般是经过验证发布的稳定版本，即正式版本。
+- 查看cudnn 版本
+```shell
+# 9.0.0
+cat /usr/include/cudnn_version.h | grep -A 5 MAJOR
+#define CUDNN_MAJOR 9
+#define CUDNN_MINOR 0
+#define CUDNN_PATCHLEVEL 0
+```
+- ldd 查询 `so` 依赖项

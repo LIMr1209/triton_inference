@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import time
 
 import numpy as np
@@ -5,7 +9,10 @@ import onnx
 import onnxruntime as rt
 import torch
 from torchvision.models.resnet import resnet152, ResNet152_Weights
-import tensorrt as trt
+try:
+    import tensorrt as trt
+except:
+    import tensorrt_bindings as trt
 from cuda import cuda
 
 
@@ -110,7 +117,7 @@ trt_end_time = time.time()
 
 # ONNX inference
 onnx_model = onnx.load(onnx_path)
-sess = rt.InferenceSession(onnx_path)
+sess = rt.InferenceSession(onnx_path, providers=["CUDAExecutionProvider"])
 
 input_all = [node.name for node in onnx_model.graph.input]
 input_initializer = [
@@ -121,6 +128,8 @@ assert len(net_feed_input) == 1
 
 sess_input = sess.get_inputs()[0].name
 sess_output = sess.get_outputs()[0].name
+
+onnx_result = sess.run([sess_output], {sess_input: dummy_input})[0]
 
 onnx_start_time = time.time()
 onnx_result = sess.run([sess_output], {sess_input: dummy_input})[0]

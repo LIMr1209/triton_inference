@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from src.u2net.detect import load_model, preprocess
 import numpy as np
 from PIL import Image

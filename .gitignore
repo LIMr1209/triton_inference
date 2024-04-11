@@ -3,3 +3,5 @@ __pycache__
 *.plan
 *.onnx
 *.pt
+*.xml
+*.bin
